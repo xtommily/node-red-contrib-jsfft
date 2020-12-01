@@ -1,21 +1,21 @@
 <script type="text/javascript">
-    RED.nodes.registerType('festo-fft',{
+    RED.nodes.registerType('js-fft',{
         category: 'function',
         color: '#0091dc',
         defaults: {
-            name: {value:"Festo FFT"},
+            name: {value:"JS FFT"},
             algorithm: {value:"fft", required: true}
         },
         inputs:1,
         outputs:1,
         icon: "serial.png",
         label: function() {
-            return this.name||"festo-fft";
+            return this.name||"js-fft";
         }
     });
 </script>
 
-<script type="text/html" data-template-name="festo-fft">
+<script type="text/html" data-template-name="js-fft">
     <div class="form-row">
         <label for="node-input-algorithm"><i class="fa fa-gears"></i> Algorithm</label>
         <select class="dropbtn" id="node-input-algorithm">
@@ -26,10 +26,10 @@
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Festo FFT">
+        <input type="text" id="node-input-name" placeholder="FFT">
     </div>
 </script>
 
-<script type="text/html" data-help-name="festo-fft">
+<script type="text/html" data-help-name="js-fft">
     <p>A FFT implementation node</p>
 </script>

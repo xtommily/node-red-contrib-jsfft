@@ -279,7 +279,7 @@ class ComplexArray extends baseComplexArray {
 }
 
 module.exports = function (RED) {
-  function FestoFftNode(config) {
+  function JsFftNode(config) {
 
     RED.nodes.createNode(this, config);
     var node = this;
@@ -323,5 +323,5 @@ module.exports = function (RED) {
       node.send(msg);
     });
   }
-  RED.nodes.registerType("festo-fft", FestoFftNode);
+  RED.nodes.registerType("js-fft", JsFftNode);
 }
