@@ -3,7 +3,8 @@
         category: 'function',
         color: '#0091dc',
         defaults: {
-            name: {value:"Festo FFT"}
+            name: {value:"Festo FFT"},
+            algorithm: {value:"fft", required: true}
         },
         inputs:1,
         outputs:1,
@@ -16,7 +17,15 @@
 
 <script type="text/html" data-template-name="festo-fft">
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-superpowers"></i> Festo FFT</label>
+        <label for="node-input-algorithm"><i class="fa fa-gears"></i> Algorithm</label>
+        <select class="dropbtn" id="node-input-algorithm">
+            <option value="fft">FFT</option>
+            <option value="inv">InvFFT</option>
+            <option value="mgn">Magnitude+Phase</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Festo FFT">
     </div>
 </script>
