@@ -1,5 +1,6 @@
 # JS FFT
-A Node-Red FFT and InvFFT implementaton
+A Node-Red FFT and InvFFT implementaton.
+Package made with code from https://github.com/dntj/jsfft.
 
 ## FFT
 
