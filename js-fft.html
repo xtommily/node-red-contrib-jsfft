@@ -4,7 +4,8 @@
         color: '#0091dc',
         defaults: {
             name: {value:"JS FFT"},
-            algorithm: {value:"fft", required: true}
+            algorithm: {value:"fft", required: true},
+            period: {value:0.1, required: true, validate:RED.validators.number()}
         },
         inputs:1,
         outputs:1,
@@ -23,6 +24,10 @@
             <option value="inv">InvFFT</option>
             <option value="mgn">Magnitude+Phase</option>
         </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-period"><i class="fa fa-clock-o"></i> Sampling period [s]</label>
+        <input type="text" id="node-input-period" placeholder="0.01">
     </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>

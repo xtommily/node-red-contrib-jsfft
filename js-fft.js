@@ -86,24 +86,24 @@ class baseComplexArray {
     });
   }
 
-  toMagnitudeAndPhase() {
+  toMagnitudeAndPhase(period) {
     const mags = [];
 
     this.forEach((value, i) => {
       mags.push(
-        { magnitude: Math.sqrt(value.real * value.real + value.imag * value.imag), phase: Math.atan(value.imag, value.real) * 180 / PI }
+        { freq: i/(this.length*period), magnitude: Math.sqrt(value.real * value.real + value.imag * value.imag), phase: Math.atan(value.imag, value.real) * 180 / PI }
       );
     })
 
     return mags;
   }
 
-  toRealAndImag() {
+  toRealAndImag(period) {
     const components = [];
 
     this.forEach((value, i) => {
       components.push(
-        { real: value.real, imag: value.imag }
+        { freq: i/(this.length*period), real: value.real, imag: value.imag }
       );
     })
 
@@ -286,6 +286,7 @@ module.exports = function (RED) {
     node.algorithm = config.algorithm || "fft";
     node.freqmin = config.freqmin;
     node.freqmax = config.freqmax;
+    node.period = config.period;
 
     node.on('input', function (msg) {
       var data = new ComplexArray(msg.payload.length);
@@ -295,7 +296,7 @@ module.exports = function (RED) {
             value.real = msg.payload[i];
           });
           data.FFT();
-          msg.payload = data.toRealAndImag();
+          msg.payload = data.toRealAndImag(node.period);
           break;s
 
         case "inv":
@@ -304,7 +305,7 @@ module.exports = function (RED) {
             value.imag = msg.payload[i].imag;
           });
           data.InvFFT();
-          msg.payload = data.toRealAndImag();
+          msg.payload = data.toRealAndImag(node.period);
           break;
 
         case "mgn":
@@ -312,7 +313,7 @@ module.exports = function (RED) {
             value.real = msg.payload[i];
           });
           data.FFT();
-          msg.payload = data.toMagnitudeAndPhase();
+          msg.payload = data.toMagnitudeAndPhase(node.period);
           break;
 
         default:
